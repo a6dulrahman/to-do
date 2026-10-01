@@ -12,3 +12,37 @@
  *  4. delete a todo
  */
 
+import { ToDo, Project } from './todos.js';
+import deleteProject from './todos.js';
+
+const addProject = document.querySelector('aside svg');
+const dialog = document.querySelector('dialog');
+const projectNameInput = document.querySelector('#name');
+const submitNewProject = document.querySelector('form button + button');
+const cancel = document.querySelector('button#cancel');
+
+addProject.addEventListener('click', (e) => {
+  dialog.showModal();
+});
+
+cancel.addEventListener('click', (e) => {
+  dialog.close;
+});
+
+submitNewProject.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  const check = Project.listProjects().some((project) => {
+    return project.name === projectNameInput.value;
+  });
+
+  if (!check) {
+    new Project(projectNameInput.value);
+    dialog.close();
+  } else {
+    const p = document.createElement('p')
+    p.textContent = `'${projectNameInput.value}' already token!`
+    p.style.color = 'red'
+    projectNameInput.after(p)
+  }
+});

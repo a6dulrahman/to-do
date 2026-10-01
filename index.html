@@ -4,10 +4,74 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./src/style.css" />
-    <script type="module" src="/src/main.js" defer></script>
+    <script type="module" src="./src/main.js" defer></script>
     <title>TO-DO</title>
   </head>
   <body>
-    <h1>Home</h1>
+    <header>
+      <nav>
+        <div>Home</div>
+        <div>Menu</div>
+        <div>About</div>
+      </nav>
+    </header>
+
+    <aside>
+      <div class="project">
+        <div class="container">
+          <p>New Project</p>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <title>new project</title>
+            <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+          </svg>
+        </div>
+      </div>
+      <div class="project">
+        <div class="container">
+          <p>Main</p>
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <title>plus</title>
+              <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <title>expand</title>
+              <path
+                d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+              />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <title>delete</title>
+              <path
+                d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <main>
+      <dialog>
+        <form action="">
+          <label for="name"
+            >name <input type="text" autofocus id="name" maxlength="40"
+          /></label>
+          <div>
+            <button id="cancel">Cancel</button>
+            <button type="submit">Add</button>
+          </div>
+        </form>
+      </dialog>
+    </main>
+    <footer>
+      <a href="https://github.com/a6dulrahman">
+        <img
+          src="https://avatars.githubusercontent.com/u/307510253?v=4"
+          alt=""
+          loading="lazy"
+        />
+        <p>a6dulrahman</p>
+      </a>
+    </footer>
   </body>
 </html>

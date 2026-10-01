@@ -1,0 +1,169 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 5px;
+  box-sizing: border-box;
+  display: grid;
+  background-color: rgba(160, 164, 160, 0.96);
+  grid-template: 50px 1fr 55px / 320px 1fr;
+  gap: 10px;
+}
+
+header,
+aside,
+main,
+footer {
+  background-color: white;
+  border-radius: 5ch;
+}
+
+header {
+  padding-left: 30px;
+  grid-area: 1 / 1 / 2 / 3;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+nav > div {
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+nav > div:hover {
+  background-color: rgb(247, 245, 245);
+  border-radius: 1ch;
+  cursor: pointer;
+  box-shadow: 5px 5px rgba(128, 128, 128, 0.78);
+}
+
+aside {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.container {
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 40px;
+  border: 2px solid gray;
+  border-radius: 1ch;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container:hover {
+  box-shadow: 0.3ch 0.3ch gray;
+  position: relative;
+  bottom: 0.2ch;
+  right: 0.2ch;
+  border: 2px solid rgba(0, 0, 255, 0.565);
+}
+
+aside > div > p {
+  font: message-box;
+  font-size: larger;
+}
+
+.container svg {
+  width: 23px;
+  fill: rgb(80, 80, 90);
+}
+.container svg:hover {
+  cursor: pointer;
+  border-radius: 100%;
+  background-color: rgba(163, 164, 163, 0.566);
+  fill: black;
+}
+
+.container > div {
+  width: 34%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container svg + svg + svg:hover {
+  fill: rgb(233, 22, 22);
+}
+
+main {
+  grid-area: 2 / 2 / 3 / 3;
+  border-radius: 5ch;
+}
+
+footer {
+  grid-area: 3 / 1 / 4 / 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: bolder;
+  font-size: x-large;
+}
+
+footer * {
+  margin: 0px;
+  padding: 0px;
+  font-size: 2.2ch;
+}
+
+footer img {
+  width: 30px;
+  border: 1px solid gray;
+  border-radius: 100%;
+}
+
+footer a {
+  text-decoration-line: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  align-items: center;
+}
+
+dialog {
+  width: 300px;
+  height: 100px;
+  margin: 0px;
+  justify-self: center;
+  align-self: center;
+  position: relative;
+  bottom: 100px;
+  border: 0px;
+  border-radius: 1ch;
+  box-shadow: 1ch 1ch gray;
+}
+
+form {
+  margin-top: 10px;
+  margin-left: 10px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+form button + button {
+  margin-left: 20px;
+}
+
+dialog input {
+  width: 200px;
+}
+
+dialog input + p {
+  position: relative;
+  left: 10px;
+}
