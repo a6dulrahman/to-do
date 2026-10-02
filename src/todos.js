@@ -1,18 +1,16 @@
 // todos.js
 
-const Projects = [];
-
 const Project = function (name) {
   if (!new.target) {
-    return "can't call Project without `new` keyword!";
+    throw Error("can't call Project without `new` keyword!");
   }
   this.name = name;
   this.todos = [];
-  Projects.push(this);
+  localStorage.setItem(this.name, JSON.stringify(this));
 };
 
 Project.listProjects = () => {
-  return Projects;
+  return Object.keys(localStorage);
 };
 
 Project.prototype.addToDo = function (todo) {
@@ -36,10 +34,9 @@ class ToDo {
     this.priority = priority;
     this.notes = notes;
     this.checklist = [];
-
-    function addToCheckList(text) {
-      this.checklist.push({ id: crypto.randomUUID(), text, completed: false });
-    }
+  }
+  addToCheckList(text) {
+    this.checklist.push({ text, completed: false });
   }
 }
 

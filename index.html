@@ -10,12 +10,9 @@
   <body>
     <header>
       <nav>
-        <div>Home</div>
-        <div>Menu</div>
-        <div>About</div>
+        <a href="#" style="text-decoration-line: none; color: black">To-Do</a>
       </nav>
     </header>
-
     <aside>
       <div class="project">
         <div class="container">
@@ -26,39 +23,65 @@
           </svg>
         </div>
       </div>
-      <div class="project">
-        <div class="container">
-          <p>Main</p>
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <title>plus</title>
-              <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <title>expand</title>
-              <path
-                d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-              />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <title>delete</title>
-              <path
-                d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z"
-              />
-            </svg>
+      <template id="project-tpl">
+        <div class="project added">
+          <div class="container">
+            <p>Main</p>
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <title>add todo</title>
+                <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <title>expand todos</title>
+                <path
+                  d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <title>delete project</title>
+                <path
+                  d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z"
+                />
+              </svg>
+            </div>
           </div>
         </div>
-      </div>
+      </template>
     </aside>
     <main>
-      <dialog>
+      <dialog class="project">
         <form action="">
           <label for="name"
-            >name <input type="text" autofocus id="name" maxlength="40"
+            >name <input type="text" autofocus id="name" required
           /></label>
           <div>
-            <button id="cancel">Cancel</button>
+            <button type="button" id="cancel-project">Cancel</button>
             <button type="submit">Add</button>
+          </div>
+        </form>
+      </dialog>
+      <dialog class="to-do">
+        <form action="">
+          <label for="title"
+            >title: <input type="text" id="title" maxlength="40" /></label
+          ><label for="description"
+            >description:<input
+              type="text"
+              id="description"
+              maxlength="200" /></label
+          ><label for="due-date"
+            >due-date:<input type="datetime-local" id="due-date" /></label
+          ><label for="priority"
+            >priority:
+            <select id="priority">
+              <option value="high"></option>
+              <option value="medium"></option>
+              <option value="low"></option></select
+          ></label>
+          <div>
+            <button type="button" id="cancel-to-do">Cancel</button
+            ><button type="submit">Add</button>
           </div>
         </form>
       </dialog>

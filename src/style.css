@@ -31,9 +31,11 @@ nav {
   gap: 30px;
   font-size: x-large;
   font-weight: bolder;
+  display: flex;
+  justify-content: center;
 }
 
-nav > div {
+/* nav > div {
   padding: 5px;
   border: 1px solid black;
   border-radius: 10px;
@@ -44,7 +46,7 @@ nav > div:hover {
   border-radius: 1ch;
   cursor: pointer;
   box-shadow: 5px 5px rgba(128, 128, 128, 0.78);
-}
+} */
 
 aside {
   padding: 20px;
@@ -57,7 +59,7 @@ aside {
   padding: 5px;
   padding-left: 10px;
   padding-right: 10px;
-  height: 40px;
+  height: 20px;
   border: 2px solid gray;
   border-radius: 1ch;
   display: flex;
@@ -79,7 +81,7 @@ aside > div > p {
 }
 
 .container svg {
-  width: 23px;
+  width: 15px;
   fill: rgb(80, 80, 90);
 }
 .container svg:hover {
@@ -161,9 +163,45 @@ form button + button {
 
 dialog input {
   width: 200px;
+  margin-left: 10px;
 }
 
-dialog input + p {
+dialog p {
+  margin: 0px;
+  width: max-content;
+  color: red;
+  font-weight: bold;
+  font-size: 1.9ch;
   position: relative;
-  left: 10px;
+  top: 5px;
+  left: 50px;
+}
+
+button {
+  width: max-content;
+  border: 2px solid gainsboro;
+  border-radius: 5px;
+  box-shadow: 3px 3px gray;
+  font: caption;
+}
+
+.to-do {
+  width: 400px;
+  height: 200px;
+  padding: 10px;
+}
+
+.to-do label {
+  margin-bottom: 10px;
+}
+
+label > input, label > select {
+  margin-left: 20px;
+}
+
+.to-do form {
+  width: 380px;
+  height: 180px;
+  display: flex;
+  font: caption;
 }
