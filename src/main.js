@@ -23,7 +23,8 @@ const projectNameInput = document.querySelector('#name');
 const submitNewProject = document.querySelector('button[type=submit]');
 const cancelProject = document.querySelector('#cancel-project');
 const addToDoDialog = document.querySelector('dialog.to-do');
-const cancelToDo = document.querySelector('#cancel-to-do');
+const toDoForm = document.querySelector('dialog.to-do form');
+const cancelToDoBtn = document.querySelector('#cancel-to-do');
 
 if (!localStorage.getItem('main')) {
   new Project('main');
@@ -43,8 +44,9 @@ const displayProjects = function () {
   for (let i = 0; i < projects.length; i++) {
     const node = tpl.content.cloneNode(true);
     node.querySelector('p').textContent = projects[i];
-    node.querySelector('svg + svg + svg').setAttribute('id', `${projects[i]}`);
-
+    node.querySelectorAll('svg').forEach((svg) => {
+      svg.setAttribute('class', `${projects[i]}`);
+    });
     aside.append(node);
   }
 
@@ -52,13 +54,82 @@ const displayProjects = function () {
   addToDoBtns.forEach((elem) => {
     elem.addEventListener('click', (e) => {
       addToDoDialog.showModal();
+      toDoForm.setAttribute('id', elem.classList.value);
+    });
+  });
+
+  const toggleToDos = document.querySelectorAll('.container svg + svg');
+  toggleToDos.forEach((elem) => {
+    elem.addEventListener('click', (e) => {
+      const todos = JSON.parse(
+        localStorage.getItem(e.target.classList.value),
+      ).todos;
+
+      const ul =
+        e.target.parentElement.parentElement.parentElement.querySelector('ul');
+
+      ul.replaceChildren();
+
+      ul.toggleAttribute('hidden');
+      todos.forEach((todo) => {
+        const li = document.createElement('li');
+        li.dataset.id = todo.id;
+
+        li.addEventListener('click', (e) => {
+          const main = document.querySelector('main');
+          main.replaceChildren();
+
+          const todoTpl = document
+            .querySelector('#to-do-tpl')
+            .content.cloneNode(true);
+          const project =
+            e.target.parentElement.parentElement.parentElement.parentElement.querySelector(
+              'svg',
+            ).classList.value;
+
+          const todo = JSON.parse(localStorage.getItem(project)).todos.find(
+            (todo) => {
+              return todo.id === li.dataset.id;
+            },
+          );
+          console.log(todo);
+
+
+          todoTpl.querySelector('.to-do.title').textContent = todo.title
+          todoTpl.querySelector('.to-do.description').textContent = todo.description
+          todoTpl.querySelector('.to-do.date').textContent = todo.dueDate
+          todoTpl.querySelector('.to-do.priority').textContent = todo.priority
+
+          main.append(todoTpl)
+          
+        });
+
+        const title = document.createElement('span');
+        title.textContent = todo.title;
+
+        const date = document.createElement('span');
+        date.textContent = todo.dueDate;
+
+        const priority = document.createElement('div');
+        if (todo.priority === 'low') {
+          priority.style.backgroundColor = 'green';
+        } else if (todo.priority === 'medium') {
+          priority.style.backgroundColor = 'orange';
+        } else priority.style.backgroundColor = 'red';
+
+        const div = document.createElement('div');
+        div.append(title, date);
+
+        li.append(div, priority);
+        ul.append(li);
+      });
     });
   });
 
   const deleteBtns = document.querySelectorAll('svg + svg + svg');
   deleteBtns.forEach((elem) => {
     elem.addEventListener('click', (e) => {
-      localStorage.removeItem(elem.id);
+      localStorage.removeItem(elem.classList.value);
       displayProjects();
     });
   });
@@ -123,4 +194,26 @@ submitNewProject.addEventListener('click', (e) => {
 cancelProject.addEventListener('click', (e) => {
   e.preventDefault;
   addProjectDialog.close();
+});
+
+toDoForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  const entries = Object.fromEntries(data);
+  const todo = new ToDo(
+    entries.title,
+    entries.description,
+    entries['due-date'],
+    entries.priority,
+  );
+
+  const project = JSON.parse(localStorage.getItem(toDoForm.id));
+  project.todos.push(todo);
+  localStorage.setItem(toDoForm.id, JSON.stringify(project));
+
+  addToDoDialog.close();
+});
+
+cancelToDoBtn.addEventListener('click', (e) => {
+  addToDoDialog.close();
 });

@@ -13,17 +13,18 @@ Project.listProjects = () => {
   return Object.keys(localStorage);
 };
 
-Project.prototype.addToDo = function (todo) {
-  this.todos.push(todo);
-};
+// Project.addToDo = function (projectName, todo) {
+//   this.todos.push(todo);
+//   localStorage.setItem(projectName, todo)
+// };
 
-Project.prototype.removeToDo = function (todoId) {
-  const index = this.todos.findIndex((item) => {
-    item.id === todoId;
-  });
+// Project.prototype.removeToDo = function (todoId) {
+//   const index = this.todos.findIndex((item) => {
+//     item.id === todoId;
+//   });
 
-  this.todos.splice(index, 1);
-};
+//   this.todos.splice(index, 1);
+// };
 
 class ToDo {
   constructor(title, description, dueDate, priority, notes) {
@@ -32,11 +33,6 @@ class ToDo {
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
-    this.notes = notes;
-    this.checklist = [];
-  }
-  addToCheckList(text) {
-    this.checklist.push({ text, completed: false });
   }
 }
 

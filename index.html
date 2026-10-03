@@ -46,6 +46,15 @@
               </svg>
             </div>
           </div>
+          <ul hidden></ul>
+        </div>
+      </template>
+      <template id="to-do-tpl">
+        <div id="display-to-do">
+          <p class="to-do title"></p>
+          <p class="to-do description"></p>
+          <p class="to-do date"></p>
+          <p class="to-do priority"></p>
         </div>
       </template>
     </aside>
@@ -64,21 +73,33 @@
       <dialog class="to-do">
         <form action="">
           <label for="title"
-            >title: <input type="text" id="title" maxlength="40" /></label
+            >title:
+            <input
+              type="text"
+              name="title"
+              id="title"
+              maxlength="40"
+              required /></label
           ><label for="description"
             >description:<input
               type="text"
+              name="description"
               id="description"
               maxlength="200" /></label
           ><label for="due-date"
-            >due-date:<input type="datetime-local" id="due-date" /></label
+            >due-date:<input
+              type="date"
+              name="due-date"
+              id="due-date"
+              required /></label
           ><label for="priority"
             >priority:
-            <select id="priority">
-              <option value="high"></option>
-              <option value="medium"></option>
-              <option value="low"></option></select
-          ></label>
+            <select id="priority" name="priority">
+              <option value="low">low</option>
+              <option value="medium">medium</option>
+              <option value="high">high</option>
+            </select></label
+          >
           <div>
             <button type="button" id="cancel-to-do">Cancel</button
             ><button type="submit">Add</button>

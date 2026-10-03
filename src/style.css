@@ -55,24 +55,26 @@ aside {
   gap: 10px;
 }
 
+.added {
+  display: flex;
+  flex-direction: column;
+}
+
+.project.added:hover {
+  position: relative;
+  bottom: 0.2ch;
+  right: 0.2ch;
+}
+
 .container {
   padding: 5px;
   padding-left: 10px;
   padding-right: 10px;
   height: 20px;
-  border: 2px solid gray;
   border-radius: 1ch;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.container:hover {
-  box-shadow: 0.3ch 0.3ch gray;
-  position: relative;
-  bottom: 0.2ch;
-  right: 0.2ch;
-  border: 2px solid rgba(0, 0, 255, 0.565);
 }
 
 aside > div > p {
@@ -195,7 +197,8 @@ button {
   margin-bottom: 10px;
 }
 
-label > input, label > select {
+label > input,
+label > select {
   margin-left: 20px;
 }
 
@@ -204,4 +207,72 @@ label > input, label > select {
   height: 180px;
   display: flex;
   font: caption;
+}
+
+ul {
+  padding-left: 10px;
+  padding-right: 5px;
+  margin-bottom: 0px;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+li {
+  height: 3ch;
+  margin-bottom: 1ch;
+  border: 1px solid white;
+  border-radius: 0.5ch;
+  display: flex;
+  justify-content: space-between;
+}
+
+li:hover {
+  border-color: blue;
+}
+
+li * {
+  align-self: center;
+  cursor: pointer;
+}
+
+li div:first-child {
+  display: flex;
+}
+
+li span:first-child {
+  width: 130px;
+  margin-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+li div + div {
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+}
+
+.project.added {
+  border: 2px solid gray;
+  border-radius: 1.5ch;
+}
+
+
+main {
+  display: grid;
+  
+}
+
+#display-to-do {
+  width: 300px;
+  height: 400px;
+  justify-self: center;
+  align-self: center;
+}
+
+#display-to-do > p {
+  width: max-content;
+  height: max-content;
+  margin-bottom: 10px;
 }
