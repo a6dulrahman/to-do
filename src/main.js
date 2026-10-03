@@ -82,6 +82,7 @@ const displayProjects = function () {
           const todoTpl = document
             .querySelector('#to-do-tpl')
             .content.cloneNode(true);
+
           const project =
             e.target.parentElement.parentElement.parentElement.parentElement.querySelector(
               'svg',
@@ -94,14 +95,48 @@ const displayProjects = function () {
           );
           console.log(todo);
 
+          todoTpl.querySelector('svg').id = li.dataset.id;
+          todoTpl.querySelector('.to-do.title').textContent = todo.title;
+          todoTpl.querySelector('.to-do.description').textContent =
+            todo.description;
+          todoTpl.querySelector('.to-do.date').textContent = todo.dueDate;
+          todoTpl.querySelector('.to-do.priority').textContent = todo.priority;
 
-          todoTpl.querySelector('.to-do.title').textContent = todo.title
-          todoTpl.querySelector('.to-do.description').textContent = todo.description
-          todoTpl.querySelector('.to-do.date').textContent = todo.dueDate
-          todoTpl.querySelector('.to-do.priority').textContent = todo.priority
+          main.append(todoTpl);
 
-          main.append(todoTpl)
-          
+          const editToDo = document.querySelector('#display-to-do svg');
+          editToDo.addEventListener('click', (e) => {
+            const projectName = project;
+            const formTpl = document
+              .querySelector('#edit-to-do')
+              .content.cloneNode(true);
+
+            main.replaceChildren(formTpl);
+
+            const editForm = document.querySelector('main form#edit-to-do');
+            editForm.id = editToDo.id;
+
+            editForm.addEventListener('submit', (e) => {
+              e.preventDefault();
+
+              const formData = new FormData(editForm);
+
+              const entries = Object.fromEntries(formData);
+              entries.id = editForm.id;
+              const project = JSON.parse(localStorage.getItem(projectName));
+              const toDoIndex = project.todos.findIndex((todo) => {
+                return todo.id === entries.id;
+              });
+
+              project.todos.splice(toDoIndex, 1);
+              project.todos.push(entries);
+              localStorage.setItem(projectName, JSON.stringify(project))
+
+              displayProjects();
+              main.replaceChildren()
+            });
+
+          });
         });
 
         const title = document.createElement('span');

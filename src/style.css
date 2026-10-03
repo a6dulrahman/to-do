@@ -258,21 +258,44 @@ li div + div {
   border-radius: 1.5ch;
 }
 
-
 main {
   display: grid;
-  
 }
 
 #display-to-do {
   width: 300px;
   height: 400px;
+  border: 2ch solid grey;
+  border-radius: 3ch;
   justify-self: center;
   align-self: center;
+  display: grid;
+  align-content: start;
 }
 
-#display-to-do > p {
-  width: max-content;
+#display-to-do > div {
+  width: 100%;
+}
+
+#display-to-do p {
+  width: 100%;
   height: max-content;
   margin-bottom: 10px;
+}
+
+#display-to-do svg {
+  width: 30px;
+  margin: 5px;
+  fill: grey;
+  justify-self: end;
+}
+
+main form {
+  width: 300px;
+  height: 300px;
+  margin-top: 50px;
+  padding: 10px;
+  border: 2px solid black;
+  justify-self: center;
+  align-self: flex-start;
 }
